@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEMO WEB</title>
+
+<style>
+    body {
+        margin: 0;
+        background: #000;
+        color: #00ff9c;
+        font-family: monospace;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .container {
+        width: 95%;
+        max-width: 600px;
+        background: #020202;
+        border: 2px solid #00ff9c;
+        padding: 15px;
+        box-sizing: border-box;
+    }
+
+    h1 {
+        text-align: center;
+        margin: 0 0 10px;
+        font-size: 22px;
+    }
+
+    input, button {
+        width: 100%;
+        padding: 10px;
+        margin-top: 8px;
+        font-family: monospace;
+        font-size: 16px;
+        box-sizing: border-box;
+    }
+
+    input {
+        background: #000;
+        border: 1px solid #00ff9c;
+        color: #00ff9c;
+    }
+
+    button {
+        background: #00ff9c;
+        color: #000;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+
+    .terminal {
+        margin-top: 12px;
+        height: 300px;
+        overflow-y: auto;
+        border: 1px solid #00ff9c;
+        padding: 8px;
+        font-size: 14px;
+        background: #000;
+    }
+
+    .bar {
+        display: inline-block;
+        width: 0;
+        height: 10px;
+        background: #00ff9c;
+        margin-left: 5px;
+    }
+</style>
+</head>
+
+<body>
+<div class="container">
+    <h1>NEMO WEB</h1>
+    <input id="ip" placeholder="Enter IP address">
+    <button id="run">RUN</button>
+
+    <div class="terminal" id="terminal"></div>
+</div>
+
+<script>
+const terminal = document.getElementById("terminal");
+const runBtn = document.getElementById("run");
+
+function log(text) {
+    terminal.innerHTML += text + "<br>";
+    terminal.scrollTop = terminal.scrollHeight;
+}
+
+function randomCode() {
+    let code = "";
+    for (let i = 0; i < 12; i++) {
+        code += Math.floor(Math.random() * 10);
+    }
+    return code;
+}
+
+function fakeProcess(ip) {
+    const steps = [
+        "Initializing NemoCore v3.8",
+        "Establishing encrypted tunnel",
+        "Scanning target IP " + ip,
+        "Bypassing firewall layer",
+        "Injecting payload module",
+        "Decrypting response packets",
+        "Extracting system hash",
+        "Finalizing exploit sequence"
+    ];
+
+    let i = 0;
+    runBtn.disabled = true;
+
+    const interval = setInterval(() => {
+        if (i < steps.length) {
+            log("> " + steps[i] + "...");
+            i++;
+        } else {
+            clearInterval(interval);
+            setTimeout(() => {
+                log("");
+                log(">>> IP ADDRESS HACKED SUCCESSFULLY");
+                log(">>> ACCESS CODE: " + randomCode());
+                log(">>> SESSION TERMINATED");
+                runBtn.disabled = false;
+            }, 2000);
+        }
+    }, 15000); // ~2 minutes total
+}
+
+runBtn.onclick = () => {
+    terminal.innerHTML = "";
+    const ip = document.getElementById("ip").value.trim();
+    if (!ip) {
+        log("ERROR: No IP address provided.");
+        return;
+    }
+    fakeProcess(ip);
+};
+</script>
+</body>
+</html>
